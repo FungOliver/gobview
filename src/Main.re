@@ -39,8 +39,8 @@ let make = (~cil, ~goblint, ~warnings, ~meta, ~stats, ~file_loc) => {
     () => {
       switch (state.display) {
       | Some(File(f)) when Option.is_none(f.contents) => fetch_file(Hashtbl.find(file_loc, f.path))
-      | Some(Func(f)) when Option.is_none(f.dot) =>
-        fetch_dot(f.name, f.file)
+      | Some(Func(f)) when Option.is_none(f.dot) => fetch_dot(f.name, f.file)
+      | Some(Cil(f)) when Option.is_none(f.contents) => fetch_file(f.path)
       | _ => ()
       };
       None;
